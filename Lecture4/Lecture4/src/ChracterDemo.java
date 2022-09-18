@@ -5,6 +5,8 @@ public class ChracterDemo {
 
         if( age >= 30 ){
             System.out.println(" You are matured.");
+        }else{
+            System.out.println("You are not matured enough!");
         }
 
     }
