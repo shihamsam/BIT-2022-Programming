@@ -1,47 +1,59 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI implements ActionListener {
 
-    private int count = 0;
-    private JFrame frame;
-    private JPanel panel;
-    private  JLabel label;
-    private JButton button;
+    private static JTextField userText;
+    private static JPasswordField passwordText;
 
-    public GUI(){
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        JPanel panel = new JPanel();
 
-        frame = new JFrame();
-        button = new JButton("Click Me");
-        button.addActionListener(this);
+        frame.setSize(300,200);;
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        label = new JLabel("Number of clicks: 0");
+        panel.setLayout(null);
 
 
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,10));
-        panel.setLayout(new GridLayout(0,1));
-        panel.add(button);
+        JLabel label = new JLabel("User");
+        label.setBounds(10,20,80,25);
         panel.add(label);
 
-        frame.add(panel,BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Our Demo GUI");
-        frame.pack();
+        userText = new JTextField();
+        userText.setBounds(100, 20,160,25);
+        panel.add(userText);
+
+        JLabel passwordLabel = new JLabel("Password");
+        passwordLabel.setBounds(10,50,80,25);
+        panel.add(passwordLabel);
+
+        passwordText = new JPasswordField();
+        passwordText.setBounds(100,50,160,25);
+        panel.add(passwordText);
+
+
+        JButton button = new JButton("Login");
+        button.setBounds(180,100,80,25);
+        button.addActionListener(new GUI());
+        panel.add(button);
+
+
+        JButton button2 = new JButton("Cancel");
+        button2.setBounds(50,100,80,25);
+        button2.addActionListener(new GUI());
+        panel.add(button2);
+
+        frame.add(panel);
+
+
         frame.setVisible(true);
 
-
-    }
-    public static void main(String[] args) {
-        new GUI();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        count++;
-        label.setText("Number of clicks " + count);
+        System.out.println(e.getActionCommand() + " " + userText.getText() + ", " + passwordText.getText());
     }
 }
